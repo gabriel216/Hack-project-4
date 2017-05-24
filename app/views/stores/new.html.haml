@@ -1,0 +1,65 @@
+%h1 New store
+
+/ h1>New store</h1>
+/ <br/>
+/ <%= form_with model: @store, local: true do |form| %>
+/   <% if @store.errors.any? %>
+/     <div id="error_explanation">
+/       <h2>
+/         <%= pluralize(@store.errors.count, "error") %>
+/         prohibited this store from being saved:
+/       </h2>
+/       <ul>
+/         <% @store.errors.full_messages.each do |message| %>
+/           <li>
+/             <%= message %>
+/           </li>
+/         <% end %>
+/       </ul>
+/     </div>
+/   <% end %>
+/   <div class="field">
+/     <%= form.file_field :avatar %>
+/   </div>
+/   <div class="field">
+/     <%= form.label :name %>
+/     <input name="store[name]" type="<%= :text %>"></input>
+/   </div>
+/   <div class="field">
+/     <%= form.label :age %>
+/     <%= form.number_field :age %>
+/   </div>
+/   <div class="field">
+/     <%= form.label :gender %>
+/     <%= form.select :gender, [['Male', 'male'], ['Female', 'famale']] %>
+/   </div>
+/   <div class="field">
+/     <%= form.label :alien %>
+/     <div class="field">
+/       <%= form.label :yes %>
+/       <%= form.radio_button :alien, true %>
+/     </div>
+/     <div class="field">
+/       <%= form.label :no %>
+/       <%= form.radio_button :alien, false %>
+/     </div>
+/     <h4>Hobbies</h4>
+/     <ul>
+/       <%= form.fields_for :hobbies do |hobby| %>
+/         <li>
+/           <div class="field">
+/             <%= hobby.label :name %>
+/             <%= hobby.text_field :name %>
+/           </div>
+/           <div class="field">
+/             <%= hobby.label :kind %>
+/             <%= hobby.select :kind, @kinds %>
+/           </div>
+/         </li>
+/       <% end %>
+/     </ul>
+/   </div>
+/   <br/>
+/   <%= form.submit %>
+/ <% end %>
+/ <%= link_to 'Back', people_path %>
