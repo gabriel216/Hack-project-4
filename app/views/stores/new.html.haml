@@ -2,15 +2,15 @@
 %h1 New Adjacent Store
 %br/
 
-= form_with model: @person, local: true do |form|
-      .field 
-            =form.label :name
-            %input{type: :text, name: 'store[name]'}
-      %br/
-      .field
-            =form.label :kind
-            =form.select :kind, [['Shoes', 'shoes'], ['Electronics', 'electronics'], ['Clothes', 'clothes']]
-      %br/
+= form_with model: @store, local: true do |form|
+	.field 
+		=form.label :name
+		%input{type: :text, name: 'store[name]'}
+	%br/
+	.field
+		=form.label :kind
+		=form.select :kind, [['Shoes', 'shoes'], ['Electronics', 'electronics'], ['Clothes', 'clothes']]
+	%br/
 
-      =form.submit
-= link_to 'Back', stores_path
+	=form.submit
+	= link_to 'Back', stores_path
