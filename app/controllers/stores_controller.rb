@@ -2,11 +2,11 @@ class StoresController < ApplicationController
   # skip_before_action :verify_authenticity_token, only: [:create, :update, :destroy]
   before_action :set_store, only: [:show, :edit, :update, :destroy]
   def index
-    if params.key?(:query)
-      @stores = Store.where('stores.name LIKE ?', "%#{params[:query]}%")
-    else
-      @stores = Store.all
-    end
+    @stores = Store.all 
+    respond_to do |format|
+      format.json {render json: @stores}
+      format.html #index.html.haml
+      end
   end
 
   def show
@@ -17,12 +17,10 @@ class StoresController < ApplicationController
  
   def new
     @store = Store.new
-    10.times { @store.products.build}
-    @kinds = Product.kinds.keys.to_a
   end
-  
+
 def create
-    @store = Store.new(store_params)
+  @store = Store.new(store_params)
 
     respond_to do |format|
       if @store.save
