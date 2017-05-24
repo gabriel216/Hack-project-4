@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
   # skip_before_action :verify_authenticity_token, only: [:create, :update, :destroy]
-  
+  before_action :set_store, only: [:show, :edit, :update, :destroy]
   def index
     if params.key?(:query)
       @stores = Store.where('stores.name LIKE ?', "%#{params[:query]}%")
@@ -10,7 +10,6 @@ class StoresController < ApplicationController
   end
 
   def show
-    @store = Store.first
   end
  
   def edit
@@ -18,6 +17,8 @@ class StoresController < ApplicationController
  
   def new
     @store = Store.new
+    10.times { @store.products.build}
+    @kinds = Product.kinds.keys.to_a
   end
   
 def create
@@ -35,15 +36,31 @@ def create
   end
 
   def update
-    
+      respond_to do |format|
+      if @store.update(store_params)
+        format.html { redirect_to @store, notice: 'store was successfully updated.' }
+        format.json { render :show, status: :ok, location: @store }
+      else
+        format.html { render :edit }
+        format.json { render json: @store.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
-    
+      @store.destroy
+      respond_to do |format|
+        format.html { redirect_to stores_path, notice: 'store was successfully destroyed.' }
+        format.json { head :no_content }
+    end
   end
   
   private
 
+
+  def set_store
+    @store = Store.find(params[:id])
+  end
   def store_params
     params.require(:store).permit(:name, :kind)
   end

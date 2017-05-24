@@ -1,21 +1,9 @@
-%h1 hola
-= link_to 'Back', stores_path
-/ %div
-/   = image_tag @store.avatar.url(:thumb)
 
-/ - if @store.hobbies.present?
-/   %h2 Hobbies
-/   %table
-/     %thead
-/       %tr
-/         %th Name
-/         %th Kind
-/     %tbody
-/     - @store.hobbies.each do |hobby|
-/       %tr
-/         %td
-/           = hobby.name
-/         %td
-/           = hobby.kind
-/         %td
-/           = link_to 'Destroy', hobby_path(hobby), method: :delete, data: {confirm: 'Are you sure?'}
+%h1 #{@store.name}
+%ul
+  %li
+    %strong
+      Kind:
+    #{@store.kind}
+= link_to 'Back', stores_path
+

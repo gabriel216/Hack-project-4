@@ -11,5 +11,4 @@
 
 class Store < ApplicationRecord
   has_many :products
-  enum kind: {shoes: 1, Electronics: 2, Clothes: 3, Bookstore: 4, Ironmongery: 5}
 end

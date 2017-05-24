@@ -1,0 +1,11 @@
+%h1 [#{@store.name}] new product
+%br/
+
+= form_with model: [@store, @product], local: true do |form|
+  .field
+    = form.label :name
+    = form.text_field :name
+    = form.submit
+%br/
+= link_to 'Create Product', store_products_path
+= link_to 'Back', store_path(@store.product)
