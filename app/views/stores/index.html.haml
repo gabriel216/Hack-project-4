@@ -1,1 +1,23 @@
-%h1 WorldTechnology
+%h1 WorldElectronics
+= form_with url: stores_path, method: :get, local: true do |form|
+  = form.label :search
+  = form.text_field :query
+  = form.submit 'go'
+%br/
+%table
+  %thead
+    %tr
+      %th Name
+      %th Kind
+
+  %tbody
+  - @stores.each do |store|
+    %tr
+      %td
+        = store.name
+      %td
+        = store.kind
+      
+%br/
+= link_to 'New Store', new_store_path
+
