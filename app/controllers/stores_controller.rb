@@ -1,6 +1,7 @@
 class StoresController < ApplicationController
 
   def index
+    @store = Store.all
   end
   
   def create
@@ -13,6 +14,26 @@ class StoresController < ApplicationController
         format.json { render json: @store.errors, status: :unprocessable_entity }
       end
       
+  end
+
+  def show
+    
+  end
+
+  def edit
+    
+  end
+
+  def new
+    
+  end
+
+  def destroy
+    
+  end
+
+  def update
+    
   end
   private
 
