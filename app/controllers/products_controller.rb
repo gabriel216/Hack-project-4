@@ -1,7 +1,11 @@
 class ProductsController < ApplicationController
    def index
      @store = Store.find_by(id: params[:store_id])
-     render json: @store
+     @products = @store.products
+      respond_to do |format|
+      format.json {render json: @products}
+      format.html #index.html.haml
+      end
   end
 
   def show
@@ -20,7 +24,7 @@ def create
   if @store 
     @product = @store.products.build(product_params)
     if @product.save
-      redirect_to @store, notice: 'Product was Created'
+      redirect_to @product, notice: 'Product was Created'
     else
       render :new
     end

@@ -6,8 +6,8 @@
       Kind:
     #{@store.kind}
 
-  %h2 Create New Products
-  =link_to 'Products', store_products_path 
+  %h2 List of Products
+  =link_to 'Products', store_products_path(@store) 
 = link_to 'Back', stores_path
 
 
