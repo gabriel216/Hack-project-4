@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
    def index
-     @store = Store.find_by(id: params[:store_id])
+     @store = Store.find_by(set_store)
      render json: @store
   end
 
@@ -11,12 +11,12 @@ class ProductsController < ApplicationController
   end
  
   def new
-    @store = Store.find_by(id: params[:store_id])
+    @store = Store.find_by(set_store)
     @product = @store.products.build
   end
 
 def create
-  @store = Store.find_by(id: params[:store_id])
+  @store = Store.find_by(set_store)
   if @store 
     @product = @store.products.build(product_params)
     if @product.save
