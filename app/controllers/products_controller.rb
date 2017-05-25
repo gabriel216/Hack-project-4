@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
    def index
-<<<<<<< HEAD
      @store = Store.find_by(id: params[:store_id])
      @products = @store.products
       respond_to do |format|
